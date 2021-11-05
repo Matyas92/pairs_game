@@ -1,0 +1,61 @@
+body{
+    background-color: #CAEFD1;
+    font-family: 'Playfair Display', serif;
+}
+
+img{
+    width:20%;
+    cursor: pointer;
+    margin: 1rem;
+}
+
+.wrapper{
+    text-align: center;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+
+    display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: stretch;
+	align-content: center;
+
+    
+}
+.block{
+    display: flex;
+    flex-wrap: wrap;
+    height: 20rem;
+    width: 50rem;
+    margin: 1rem;
+
+}
+
+
+
+.winningSign{
+
+    background-color: rgb(147, 227, 241);
+    color: black;
+    border-radius: 1rem;
+    margin-top: 5rem;
+    height: 30rem;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    padding-top: 10rem;
+    display: none;
+}
+
+.restart{
+    padding: 1rem;
+    margin: 2rem;
+    border-radius: 1rem;
+    background-color: rgb(50, 156, 241);
+    color: rgb(218, 225, 226);
+    border-style: none;
+    font-size: 1.2rem;
+}
