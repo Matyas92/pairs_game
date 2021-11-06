@@ -6,84 +6,83 @@ var restartButton = document.querySelector(".restart");
 var wrapper = document.querySelector(".wrapper"); 
 var info = document.querySelector(".info"); 
 
-
 document.addEventListener('DOMContentLoaded', () => {
 
     const cardArray = [
         
         {
 
-            name: 'one',
+            name: 'ein',
             img: 'one.jpg'
         },
 
         {
 
-            name: 'one',
+            name: 'ein',
             img: 'one.jpg'
         },
 
         {
 
-            name: 'two',
+            name: 'zwei',
             img: 'two.jpg'
         },
 
         {
 
-            name: 'two',
+            name: 'zwei',
             img: 'two.jpg'
         },
 
 
         {
 
-            name: 'three',
+            name: 'drei',
             img: 'three.jpg'
         },
         {
 
-            name: 'three',
+            name: 'drei',
             img: 'three.jpg'
         },
 
         {
 
-            name: 'four',
+            name: 'vier',
             img: 'four.jpg'
         },
 
 
         {
 
-            name: 'four',
+            name: 'vier',
             img: 'four.jpg'
         },
 
         {
 
-            name: 'five',
+            name: 'fünf',
             img: 'five.jpg'
         },
 
 
         {
 
-            name: 'five',
+            name: 'fünf',
             img: 'five.jpg'
         },
 
 
         {
 
-            name: 'six',
+            name: 'sechs',
             img: 'six.jpg'
         },
 
 
         {
 
-            name: 'six',
+            name: 'sechs',
             img: 'six.jpg'
         },
 
@@ -91,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     cardArray.sort(() => 0.5 - Math.random())
 
-    let block = document.querySelector('.block')
+    const block = document.querySelector('.block')
     var cardsChosen = []
     var cardsChosenId = []
     var cardsWon = []
@@ -101,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function createBoard() {
         for (let i = 0; i < cardArray.length; i++) {
 
-            var card = document.createElement('img')
+            const card = document.createElement('img')
             card.setAttribute('src', 'default.jpg')
             card.setAttribute('data-id', i)
             card.addEventListener('click', flipCard)
@@ -113,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
     //Filipping a card
 
     function flipCard() {
-        var cardId = this.getAttribute('data-id')
+        let cardId = this.getAttribute('data-id')
         cardsChosen.push(cardArray[cardId].name)
         cardsChosenId.push(cardId)
         this.setAttribute('src', cardArray[cardId].img)
@@ -128,14 +127,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function checkForMacth() {
 
-        var cards = document.querySelectorAll('img')
-        const optionOneId = cardsChosenId[0]
-        const optionTwoId = cardsChosenId[1]
+        const cards = document.querySelectorAll('img')
+        var optionOneId = cardsChosenId[0]
+        var optionTwoId = cardsChosenId[1]
 
-        if (cardsChosen[0] === cardsChosen[1]) {
+
+        if (optionOneId == optionTwoId) {
+            cards[optionOneId].setAttribute('src', 'default.jpg')
+            cards[optionTwoId].setAttribute('src', 'default.jpg')
+      
+            info.innerHTML = "You chosen the same!"
+            info.style.color= "yellow"
+  
+            setTimeout(disSign, 500);
+
+        }
+        else if (cardsChosen[0] === cardsChosen[1]) {
 
             cards[optionOneId].setAttribute('src', 'white.jpg')
             cards[optionTwoId].setAttribute('src', 'white.jpg')
+            cards[optionOneId].removeEventListener('click', flipCard)
+            cards[optionTwoId].removeEventListener('click', flipCard)
             cardsWon.push(cardsChosen)
             info.innerHTML = "Match!"
             info.style.color= "green"
@@ -169,30 +181,21 @@ document.addEventListener('DOMContentLoaded', () => {
       
 
     function restart() {
-
-        cardArray.sort(() => 0.5 - Math.random())
-        createBoard()
-    
-        wrapper.style.display = "wrapper";
-
-        win.style.display = "none";
-    
-        result.style.display = "wrapper";
+        location.reload()
+   
     
     
     }
 
     
 function winSign() {
-    win.style.display = "wrapper";
+    win.style.display = "block";
     result.style.display = "none";
     wrapper.style.display = "none";
 
 }
 
 restartButton.addEventListener('click', function(){
-    cardsWon = []
-    result.textContent = cardsWon.length
     restart() 
 
 })
